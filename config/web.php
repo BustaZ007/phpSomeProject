@@ -1,6 +1,7 @@
 <?php
 
 use yii\rbac\DbManager;
+use yii\rest\UrlRule;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -17,6 +18,10 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'uhiWgdWwsPe-s3Qlid7sG_LulCosyu-r',
+            'parsers' => [
+                'multipart/form-data' => 'yii\web\MultipartFormDataParser',
+                'application/json' => 'yii\web\JsonParser'
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -47,21 +52,27 @@ $config = [
         'db' => $db,
         'authManager' =>[
             'class'=>DbManager::class
-        ]
-        /*
+        ],
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => UrlRule::class, 'controller' => 'api/telemetry']
             ],
         ],
-        */
     ],
     'params' => $params,
 
     'modules' => [
         'users' => [
             'class' => app\modules\users\Module::class,
+        ],
+        'api' => [
+            'class' => app\modules\api\Module::class,
+        ],
+        'telemetry' => [
+            'class' => app\modules\telemetry\Module::class,
         ]
     ],
 ];
