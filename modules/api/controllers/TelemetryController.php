@@ -9,7 +9,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\filters\auth\HttpBearerAuth;
-use yii\web\Controller;
+use yii\rest\Controller;
 
 class TelemetryController extends Controller
 {
