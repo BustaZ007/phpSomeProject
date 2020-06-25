@@ -1,4 +1,4 @@
-ю/<?php
+<?php
 
 use yii\rbac\DbManager;
 
@@ -58,6 +58,12 @@ $config = [
         */
     ],
     'params' => $params,
+
+    'modules' => [
+        'users' => [
+            'class' => app\modules\users\Module::class,
+        ]
+    ],
 ];
 
 if (YII_ENV_DEV) {
